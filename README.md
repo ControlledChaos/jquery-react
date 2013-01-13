@@ -60,6 +60,14 @@ To change the default reaction overwrite the function. The follow dims and disab
         $(this).find(':enabled').attr({disabled: true});
     }
 
+### Per reactor actions
+
+To change the default reaction just for one reactor:
+
+    $reactor.reactIf( element_to_watch, condition_to_test, additional_arguments )
+            .reactor({ compliant:   function () { console.log('compliant'); },
+                       uncompliant: function () { console.log('uncompliant'); } });
+
 ### Helpers
 
 There are a number of condition helper built-in for your use.  You can access these
