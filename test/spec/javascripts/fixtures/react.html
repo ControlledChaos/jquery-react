@@ -1,0 +1,57 @@
+<h1>Standard example of the reactor jQuery plugin</h1>
+<p>Elements show and hide when they don't qualify.</p>
+
+<form id="portfolio_form">
+  <fieldset>
+    <label>Zip</label>
+    <input id="zip" type="text" value="" /><br />
+
+    <label>2011 Income</label>
+    <input id="income_2011" name="income[2011]" />
+
+    <label>Span option</label>
+    <span id="span_choice"></span>
+
+    <label>Radio Option</label>
+    <input id="yes" name="test_radio" type="radio" value="yes">Yes<br />
+    <input id="no" name="test_radio" type="radio" value="no">No
+
+    <label>Checkbox</label>
+    <input checked="checked" id="test_checked" name="text_checked" type="checkbox" value="1"><br />
+
+    <label>Select option</label>
+    <select id="select_choice">
+        <option value=""></option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+  </fieldset>
+
+  <p>Display cities only when zip is between 19100 and 19400</p>
+  <fieldset class="cities">
+      <label>Cities</label>
+      <select id="cities_select">
+          <option value=""></option>
+          <option value="philadelphia">Philadelphia</option>
+          <option value="media">Media</option>
+          <option value="doylestown">Doylestown</option>
+      </select>
+  </fieldset>
+
+  <p>Display checkboxes only for Philadelphia and income less than 40000</p>
+  <fieldset class="philly_middle_to_low_income">
+      <input type="checkbox" />Check One<br />
+      <input type="checkbox" />Check Two<br />
+      <input type="checkbox" />Check Three<br />
+      <input type="checkbox" />Check Four<br />
+  </fieldset>
+
+ <p>Display checkboxes when zip is between 19000 and 20000 and income is lower than 15000</p>
+ <fieldset class="low_income_select_zips">
+      <input type="checkbox" />Check One<br />
+      <input type="checkbox" />Check Two<br />
+      <input type="checkbox" />Check Three<br />
+      <input type="checkbox" />Check Four<br />
+  </fieldset>
+</form>
