@@ -53,7 +53,7 @@ describe("react.js", function() {
 
     it("hidden if unchecked", function() {
       $('#test_checked').removeAttr('checked').trigger('change')
-      
+
       expect(isVisible()).toBeFalsy()
     });
   });

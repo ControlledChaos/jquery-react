@@ -1,4 +1,8 @@
 describe("orReactIf", function() {
+  beforeEach(function() {
+    loadFixtures('react.html');
+  });
+
   var isVisible = function() {
     return $('.cities').is(':visible')
   }
@@ -6,8 +10,6 @@ describe("orReactIf", function() {
   describe("Using simple or syntax", function() {
 
     beforeEach(function() {
-      loadFixtures('react.html')
-
       $('.cities')
         .reactIf('#zip', 'EqualTo', 1)
         .orReactIf('#income_2011', 'EqualTo', 1)
@@ -44,12 +46,9 @@ describe("orReactIf", function() {
 
   describe("Using complex syntax", function() {
     beforeEach(function() {
-      loadFixtures('react.html')
-
       $('.cities')
         .reactIf('#zip', 'EqualTo', 1)
-        .orReactIf()
-        .reactIf('#income_2011', 'EqualTo', 1)
+        .orReactIf('#income_2011', 'EqualTo', 1)
     })
 
     it("is compliant when first is passing", function() {
