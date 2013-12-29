@@ -1,5 +1,7 @@
-React jQuery Plugin
-===================
+React jQuery Plugin [![Build Status](https://travis-ci.org/natedavisolds/jquery-react.png?branch=master)](https://travis-ci.org/natedavisolds/jquery-react)
+=============================
+
+
 
 React jQuery is a conditional (form) helper. In its basic form, it will show/hide an element based on compliance with a set of conditions (rules).
 
