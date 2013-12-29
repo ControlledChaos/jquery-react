@@ -1,0 +1,11 @@
+script:
+  - bundle
+  - bundle exec rspec
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - rbx-19mode
+notifications:
+  email:
+    on_success: always
+    on_failure: always
