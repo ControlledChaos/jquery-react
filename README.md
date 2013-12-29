@@ -140,7 +140,5 @@ Or, first add the helper to the helper list then reference it
 
     $('.reactor').trigger('change.reactor'); // triggers all events on load
 
-License
--------
-
-Composer is licensed under the MIT License - see the LICENSE file for details
+#### License
+Copyright (c) 2011 Nathan Davis Olds. This software is licensed under the MIT License.
