@@ -7,105 +7,112 @@
 
 (function($){
 
-  $.fn.reactTo = function(selector) {
-    var $elements = $(selector),
-        $reactor_element = $(this);
+  var React = {
+    reactTo: function(selector) {
+      var $elements = $(selector),
+          $reactor_element = $(this);
 
-    var _proxy_event = function() {
-      $reactor_element.trigger('react.reactor');
-    };
-
-    $elements.filter(':not(:text), :not(:password)').on('change.reactor', _proxy_event);
-    $elements.filter(':text.date-picker').on('change.reactor', _proxy_event);
-    $elements.filter(':text').on('keyup.reactor', _proxy_event);
-    $elements.filter(':password').on('keyup.reactor', _proxy_event);
-
-    return this;
-  };
-
-  $.fn.reactIf = function(sel, exp_func) {
-    var $sel = $(sel),
-        args = Array.prototype.slice.call( arguments, 2 );
-
-    var _func = function() {
-      if ($.isFunction(exp_func)) {
-        return exp_func.apply($sel);
-      } else {
-        var _returned = $.fn.reactor.helpers[exp_func].apply($sel, args);
-
-        if ($.isFunction(_returned)) {
-          return _returned.apply($sel)
-        } else {
-          return _returned;
-        }
-      }
-    };
-
-    this.each(function() {
-      var $reactor = $(this);
-
-      if (!$reactor.hasClass('reactor')) { 
-        $reactor.reactor(); 
+      var _proxy_event = function() {
+        $reactor_element.trigger('react.reactor');
       };
 
-      var conditions_arry = $reactor.data('conditions.reactor');
-      if (!$.isArray(conditions_arry)) { conditions_arry = [] };
+      $elements.filter(':not(:text), :not(:password)').on('change.reactor', _proxy_event);
+      $elements.filter(':text.date-picker').on('change.reactor', _proxy_event);
+      $elements.filter(':text').on('keyup.reactor', _proxy_event);
+      $elements.filter(':password').on('keyup.reactor', _proxy_event);
 
-      conditions_arry.push(_func);
+      return this;
+    },
 
-      $(this).data('conditions.reactor', conditions_arry);
-    });
+    reactIf: function(sel, exp_func) {
+      var $sel = $(sel),
+          args = Array.prototype.slice.call( arguments, 2 );
 
-    $(this).reactTo(sel);
-
-    return this;
-  };
-
-  $.fn.react = function() {
-    this.each(function() {
-      $(this).trigger('react.reactor')
-    });
-
-    return this;
-  };
-
-  $.fn.reactor = function(options) {
-    var settings = $.extend({}, $.fn.reactor.defaults, options);
-
-    this.each(function() {
-      var $element = $(this);
-
-      if (!$.isArray($element.data('conditions.reactor'))) {
-        $element
-          .data('conditions.reactor', [])
-          .addClass('reactor');
-      }
-
-      var isReactionary = function() {
-        var conditionalArray = $(this).data('conditions.reactor');
-        var r = true;
-
-        $.each(conditionalArray, function() {
-            r = this.call();
-            return r; // short circuits the loop when any value is false
-        });
-
-        return r;
-      }
-
-      var reaction = function(evt) {
-        if (isReactionary.apply(this)) {
-           settings.compliant.apply($element);
+      var _func = function() {
+        if ($.isFunction(exp_func)) {
+          return exp_func.apply($sel);
         } else {
-           settings.uncompliant.apply($element);
+          var _returned = $.fn.reactor.helpers[exp_func].apply($sel, args);
+
+          if ($.isFunction(_returned)) {
+            return _returned.apply($sel)
+          } else {
+            return _returned;
+          }
         }
-      }
+      };
 
-      $element.on('react.reactor', reaction);
-    });
+      this.each(function() {
+        var $reactor = $(this);
 
-    return this;
-  };
+        if (!$reactor.hasClass('reactor')) { 
+          $reactor.reactor(); 
+        };
+
+        var conditions_arry = $reactor.data('conditions.reactor');
+        if (!$.isArray(conditions_arry)) { conditions_arry = [] };
+
+        conditions_arry.push(_func);
+
+        $(this).data('conditions.reactor', conditions_arry);
+      });
+
+      $(this).reactTo(sel);
+
+      return this;
+    },
+
+    react: function() {
+      this.each(function() {
+        $(this).trigger('react.reactor')
+      });
+
+      return this;
+    },
+
+    reactor: function(options) {
+      var settings = $.extend({}, $.fn.reactor.defaults, options);
+
+      this.each(function() {
+        var $element = $(this);
+
+        if (!$.isArray($element.data('conditions.reactor'))) {
+          $element
+            .data('conditions.reactor', [])
+            .addClass('reactor');
+        }
+
+        var isReactionary = function() {
+          var conditionalArray = $(this).data('conditions.reactor');
+          var r = true;
+
+          $.each(conditionalArray, function() {
+              r = this.call();
+              return r; // short circuits the loop when any value is false
+          });
+
+          return r;
+        }
+
+        var reaction = function(evt) {
+          if (isReactionary.apply(this)) {
+             settings.compliant.apply($element);
+          } else {
+             settings.uncompliant.apply($element);
+          }
+        }
+
+        $element.on('react.reactor', reaction);
+      });
+
+      return this;
+    }
+  }
+
+  $.fn.reactTo = React.reactTo;
+  $.fn.reactIf = React.reactIf;
+  $.fn.react = React.react;
+  $.fn.reactor = React.reactor;
 
   $.fn.reactor.defaults = {
     compliant: function() {
