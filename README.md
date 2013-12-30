@@ -1,5 +1,5 @@
-React jQuery Plugin [![Build Status](https://travis-ci.org/natedavisolds/jquery-react.png?branch=master)](https://travis-ci.org/natedavisolds/jquery-react)
-=============================
+React jQuery Plugin [![Build Status](https://travis-ci.org/natedavisolds/jquery-react.png?branch=master)](https://travis-ci.org/natedavisolds/jquery-react) [![Code Climate](https://codeclimate.com/github/natedavisolds/jquery-react.png)](https://codeclimate.com/github/natedavisolds/jquery-react)
+===================================
 
 
 
