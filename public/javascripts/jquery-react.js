@@ -44,7 +44,9 @@
     this.each(function() {
       var $reactor = $(this);
 
-      if (!$reactor.hasClass('reactor')) { $reactor.reactor(); }
+      if (!$reactor.hasClass('reactor')) { 
+        $reactor.reactor(); 
+      };
 
       var conditions_arry = $reactor.data('conditions.reactor');
       if (!$.isArray(conditions_arry)) { conditions_arry = [] };
@@ -116,15 +118,15 @@
 
   $.fn.reactor.helpers = {
     NotBlank: function() {
-      return( this.val().toString() != "" )
+      return( this.val().toString() != "" );
     },
 
     Blank: function() {
-      return( this.val().toString() == "" )
+      return( this.val().toString() == "" );
     },
 
     HasElements: function() {
-      return this.size() > 0
+      return this.size() > 0;
     },
 
     Disabled: function() {
@@ -171,15 +173,15 @@
     NumberOfDigitsIs: function(number) {
       var comparisonString = this.val().toString().replace(/[^\d]+/g,''),
           passing = false,
-          length = comparisonString.length
+          length = comparisonString.length;
 
       for(index in arguments) {
         if (length == arguments[index]) {
-          passing = true
+          passing = true;
         }
       }
 
-      return passing
+      return passing;
     },
 
     LessThan: function(number) {
@@ -219,9 +221,9 @@
 
     HasValueWhenVisible: function() {
       if (this.is(':visible')) {
-        return( this.val().toString() != "" && parseFloat(this.val()) != 0.0)
+        return( this.val().toString() != "" && parseFloat(this.val()) != 0.0);
       } else {
-        return true
+        return true;
       }
     }
   };

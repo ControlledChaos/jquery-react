@@ -12,7 +12,7 @@
 #
 src_files:
   - 'spec/javascripts/helpers/jquery-1.8.3.js'
-  - public/javascripts/jquery.react.js
+  - public/javascripts/jquery-react.js
 
 # stylesheets
 #
